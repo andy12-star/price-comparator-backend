@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -22,6 +23,6 @@ public class Product {
     private Double price;
     private String currency;
     private String store;
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
 }

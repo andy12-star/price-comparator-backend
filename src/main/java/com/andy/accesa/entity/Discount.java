@@ -13,12 +13,12 @@ import java.time.LocalDate;
 @Builder
 public class Discount {
 
-    private int product_id;
+    private String product_id;
     private String product_name;
     private String brand;
     private Double package_quantity;
     private String package_unit;
-    private String package_category;
+    private String product_category;
     private LocalDate from_date;
     private LocalDate to_date;
     private int percentage_of_discount;
