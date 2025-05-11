@@ -2,6 +2,7 @@ package com.andy.accesa.controller;
 
 import com.andy.accesa.model.entity.Product;
 import com.andy.accesa.model.entity.ProductRecommendation;
+import com.andy.accesa.model.response.ProductPriceHistoryResponse;
 import com.andy.accesa.service.api.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -35,4 +36,8 @@ public class ProductController {
         return productService.getRecommendations(category,brand);
     }
 
+    @GetMapping("/{productId}/history")
+    public List<ProductPriceHistoryResponse> getPriceHistory(@PathVariable String productId) {
+        return productService.getPriceHistory(productId);
+    }
 }

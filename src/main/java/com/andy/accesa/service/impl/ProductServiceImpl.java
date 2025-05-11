@@ -2,6 +2,7 @@ package com.andy.accesa.service.impl;
 
 import com.andy.accesa.model.entity.Product;
 import com.andy.accesa.model.entity.ProductRecommendation;
+import com.andy.accesa.model.response.ProductPriceHistoryResponse;
 import com.andy.accesa.service.api.ProductService;
 import com.andy.accesa.service.data.DataService;
 import lombok.RequiredArgsConstructor;
@@ -60,6 +61,24 @@ public class ProductServiceImpl implements ProductService {
                 )
                 .sorted(Comparator.comparingDouble(ProductRecommendation::getPricePerUnit))
                 .toList();
+    }
+
+    @Override
+    public List<ProductPriceHistoryResponse> getPriceHistory(String productId) {
+        return dataService.getProductsByStore().entrySet().stream()
+                .flatMap(entry->entry.getValue().stream()
+                        .filter(product -> product.getProduct_id().equalsIgnoreCase(productId))
+                        .map(product -> ProductPriceHistoryResponse.builder()
+                                .store(entry.getKey())
+                                .date(product.getCreatedAt())
+                                .price(product.getPrice())
+                                .package_quantity(product.getPackage_quantity())
+                                .package_unit(product.getPackage_unit())
+                                .pricePerUnit(product.getPrice()/product.getPackage_quantity())
+                                .build()
+                        )
+                        .sorted((a,b)->a.getDate().compareTo(b.getDate()))
+                ).toList();
     }
 
 }
