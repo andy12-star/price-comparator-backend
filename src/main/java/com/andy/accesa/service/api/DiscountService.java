@@ -8,4 +8,6 @@ public interface DiscountService {
     List<Discount> findAll();
     List<Discount> getDiscountsByStore(String store);
     List<Discount> getBestDiscounts();
+
+    List<Discount> getNewestDiscounts();
 }

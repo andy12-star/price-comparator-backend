@@ -6,6 +6,7 @@ import com.andy.accesa.service.data.DataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -37,5 +38,15 @@ public class DiscountServiceImpl implements DiscountService {
         return findAll().stream()
                 .sorted(Comparator.comparingInt(Discount::getPercentage_of_discount).reversed())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Discount> getNewestDiscounts() {
+        return dataService.getDiscountsByStore()
+                .values()
+                .stream()
+                .flatMap(List::stream)
+                .filter(discount -> discount.getFrom_date().isAfter(LocalDate.now().minusDays(3)))
+                .toList();
     }
 }

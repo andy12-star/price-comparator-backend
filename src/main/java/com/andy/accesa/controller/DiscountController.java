@@ -31,4 +31,9 @@ public class DiscountController {
     public List<Discount> getBestDiscounts() {
         return discountService.getBestDiscounts();
     }
+
+    @GetMapping("/new")
+    public List<Discount> getNewDiscounts() {
+        return discountService.getNewestDiscounts();
+    }
 }
