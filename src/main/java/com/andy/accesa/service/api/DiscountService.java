@@ -1,6 +1,6 @@
 package com.andy.accesa.service.api;
 
-import com.andy.accesa.entity.Discount;
+import com.andy.accesa.model.entity.Discount;
 
 import java.util.List;
 

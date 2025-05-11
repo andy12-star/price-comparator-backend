@@ -1,7 +1,7 @@
 package com.andy.accesa.util;
 
-import com.andy.accesa.entity.Discount;
-import com.andy.accesa.entity.Product;
+import com.andy.accesa.model.entity.Discount;
+import com.andy.accesa.model.entity.Product;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -12,7 +12,6 @@ import java.io.FileReader;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CsvLoader {

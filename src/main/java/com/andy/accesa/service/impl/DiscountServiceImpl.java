@@ -1,13 +1,12 @@
 package com.andy.accesa.service.impl;
 
-import com.andy.accesa.entity.Discount;
+import com.andy.accesa.model.entity.Discount;
 import com.andy.accesa.service.api.DiscountService;
 import com.andy.accesa.service.data.DataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;

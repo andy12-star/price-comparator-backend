@@ -1,7 +1,7 @@
 package com.andy.accesa.service.data;
 
-import com.andy.accesa.entity.Discount;
-import com.andy.accesa.entity.Product;
+import com.andy.accesa.model.entity.Discount;
+import com.andy.accesa.model.entity.Product;
 import com.andy.accesa.util.CsvLoader;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
@@ -17,9 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.andy.accesa.util.CsvLoader.loadDiscounts;
-import static com.andy.accesa.util.CsvLoader.loadProducts;
 
 @Service
 @Getter

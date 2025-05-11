@@ -1,6 +1,6 @@
 package com.andy.accesa.controller;
 
-import com.andy.accesa.entity.Product;
+import com.andy.accesa.model.entity.Product;
 import com.andy.accesa.service.api.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

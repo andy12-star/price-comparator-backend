@@ -1,6 +1,6 @@
 package com.andy.accesa.service.impl;
 
-import com.andy.accesa.entity.Product;
+import com.andy.accesa.model.entity.Product;
 import com.andy.accesa.service.api.ProductService;
 import com.andy.accesa.service.data.DataService;
 import lombok.RequiredArgsConstructor;

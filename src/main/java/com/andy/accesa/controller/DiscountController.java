@@ -1,6 +1,6 @@
 package com.andy.accesa.controller;
 
-import com.andy.accesa.entity.Discount;
+import com.andy.accesa.model.entity.Discount;
 import com.andy.accesa.service.api.DiscountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
