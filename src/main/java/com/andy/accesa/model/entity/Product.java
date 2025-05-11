@@ -18,9 +18,9 @@ public class Product {
     private String product_name;
     private String product_category;
     private String brand;
-    private Double package_quantity;
+    private double package_quantity;
     private String package_unit;
-    private Double price;
+    private double price;
     private String currency;
     private String store;
     private LocalDate createdAt;

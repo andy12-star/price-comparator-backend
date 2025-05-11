@@ -1,12 +1,14 @@
 package com.andy.accesa.service.impl;
 
 import com.andy.accesa.model.entity.Product;
+import com.andy.accesa.model.entity.ProductRecommendation;
 import com.andy.accesa.service.api.ProductService;
 import com.andy.accesa.service.data.DataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +37,29 @@ public class ProductServiceImpl implements ProductService {
         return findAll().stream()
                 .filter(p->p.getProduct_name().toLowerCase().contains(name.toLowerCase()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductRecommendation> getRecommendations(String category, String brand) {
+        return dataService.getProductsByStore()
+                .entrySet()
+                .stream()
+                .flatMap(entry->entry.getValue().stream()
+                        .filter(product -> product.getProduct_category().equalsIgnoreCase(category))
+                        .filter(product -> brand == null||product.getBrand().equalsIgnoreCase(brand))
+                        .map(product -> ProductRecommendation.builder()
+                                .productId(product.getProduct_id())
+                                .productName(product.getProduct_name())
+                                .brand(product.getBrand())
+                                .store(product.getStore())
+                                .price(product.getPrice())
+                                .package_quantity(product.getPackage_quantity())
+                                .package_unit(product.getPackage_unit())
+                                .pricePerUnit(product.getPrice()/ product.getPackage_quantity())
+                                .build())
+                )
+                .sorted(Comparator.comparingDouble(ProductRecommendation::getPricePerUnit))
+                .toList();
     }
 
 }

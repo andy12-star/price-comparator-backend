@@ -1,6 +1,7 @@
 package com.andy.accesa.controller;
 
 import com.andy.accesa.model.entity.Product;
+import com.andy.accesa.model.entity.ProductRecommendation;
 import com.andy.accesa.service.api.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,11 @@ public class ProductController {
     @GetMapping("/find")
     public List<Product> getProductsByName(@RequestParam String name) {
         return productService.getProductsByName(name);
+    }
+
+    @GetMapping("/recommendations")
+    public List<ProductRecommendation> getProductsByRecommendation(@RequestParam String category, @RequestParam(required = false) String brand) {
+        return productService.getRecommendations(category,brand);
     }
 
 }
