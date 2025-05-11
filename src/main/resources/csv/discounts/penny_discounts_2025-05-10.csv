@@ -1,0 +1,3 @@
+product_id;product_name;brand;package_quantity;package_unit;product_category;from_date;to_date;percentage_of_discount
+P010;ulei floarea soarelui;Spornic;1;l;alimente de baza;2025-05-10;2025-05-15;7
+P011;sampon par gras;Schauma;400;ml;ingrijire personala;2025-05-12;2025-05-17;10

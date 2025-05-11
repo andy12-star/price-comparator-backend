@@ -1,0 +1,4 @@
+product_id;product_name;brand;package_quantity;package_unit;product_category;from_date;to_date;percentage_of_discount
+P003;piept de pui;Avicola;1;kg;carne;2025-05-13;2025-05-20;10
+P006;biscuiti cu unt;RoStar;0.2;kg;gustari;2025-05-13;2025-05-15;15
+P007;bere blondă;Ursus;0.5;l;bauturi;2025-05-12;2025-05-14;5

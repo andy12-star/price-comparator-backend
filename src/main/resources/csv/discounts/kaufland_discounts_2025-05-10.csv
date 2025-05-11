@@ -1,0 +1,3 @@
+product_id;product_name;brand;package_quantity;package_unit;product_category;from_date;to_date;percentage_of_discount
+P008;spaghetti nr.5;Barilla;0.5;kg;paste;2025-05-10;2025-05-17;20
+P009;vin alb demisec;Cotnari;0.75;l;bauturi;2025-05-10;2025-05-17;12
