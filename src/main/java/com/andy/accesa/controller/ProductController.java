@@ -26,6 +26,7 @@ public class ProductController {
         return productService.getProductsByStore(store);
     }
 
+
     @GetMapping("/find/{name}")
     public List<Product> getProductsByName(@PathVariable String name) {
         return productService.getProductsByName(name);
