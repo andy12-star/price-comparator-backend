@@ -58,7 +58,7 @@ mvn spring-boot:run
 ## Endpoints for Basket Optimization
 | Method | Endpoint | Description |
 |-------|----------|-------------|
-| POST   | /basket/optimize  | Returns all discounts |
+| POST   | /basket/optimize  | Calculates and returns the cheapest basket for the requested products |
 ### Example request body:
 ```json
 {
