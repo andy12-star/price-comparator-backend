@@ -39,21 +39,21 @@ mvn spring-boot:run
   
 # IV. How to use implemented features
 ## Endpoints for Product
-| Method | Endpoint | Description |
-|-------|----------|-------------|
-| GET   | /products  | Returns all products |
-|GET| /products/store/{store}|Returns products by store; store - path parameter of type String|
-|GET|/products/find/{name}|Search products by name; name - path parameter of type String|
-|GET|/products/recommendations/{category}&brand={brand}| Suggests best products by unit price; category - path parameter of type String; brand - query parameter of type String|
-|GET|/products/{productId}/history|Shows price history; productId - path parameter of type String|
+| Method | Endpoint | Description |Parameters|
+|-------|----------|------------------|-------------|
+| GET   | /products  | Returns all products | - |
+|GET| /products/store/{store}|Returns products by store| store: path parameter of type String; name of the store to filter products|
+|GET|/products/find/{name}|Search products by name| name: path parameter of type String; name or partial name of the product|
+|GET|/products/recommendations/{category}|Suggests best products by unit price|category: path parameter of type String; name of product category <br>brand: query parameter of type String, specifies the brand name to filter the recommendations; if provided, the result will include only products from the specified brand with the given category. If omitted, products from all brands in that category will be returned|
+|GET|/products/{productId}/history|Shows price history|productId: path parameter of type String; id of the product|
 
 ## Endpoints for Discount
-| Method | Endpoint | Description |
-|-------|----------|-------------|
+| Method | Endpoint | Description | Parameters |
+|-------|----------|------------------|-----------|
 | GET   | /discounts  | Returns all discounts |
-|GET| /discounts/store/{store}|Returns discounts by store; store - path parameter of type String|
-|GET|/discounts/best|Returns best discounts|
-|GET|/discounts/new| Returns newly discounts(last 3 days)|
+|GET| /discounts/store/{store}|Returns discounts by store|store - path parameter of type String; name of the store to filter discounts|
+|GET|/discounts/best|Returns best discounts| - |
+|GET|/discounts/new| Returns newly discounts(last 3 days)| - |
 
 ## Endpoints for Basket Optimization
 | Method | Endpoint | Description |
