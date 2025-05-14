@@ -31,8 +31,8 @@ public class ProductController {
         return productService.getProductsByName(name);
     }
 
-    @GetMapping("/recommendations")
-    public List<ProductRecommendation> getProductsByRecommendation(@RequestParam String category, @RequestParam(required = false) String brand) {
+    @GetMapping("/recommendations/{category}")
+    public List<ProductRecommendation> getProductsByRecommendation(@PathVariable String category, @RequestParam(required = false) String brand) {
         return productService.getRecommendations(category,brand);
     }
 
