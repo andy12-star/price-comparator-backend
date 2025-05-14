@@ -40,6 +40,8 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    // returns product recommendations by best price/unit
+    // filtered by category and by brand(optional)
     @Override
     public List<ProductRecommendation> getRecommendations(String category, String brand) {
         return dataService.getProductsByStore()
@@ -63,6 +65,7 @@ public class ProductServiceImpl implements ProductService {
                 .toList();
     }
 
+    // returns a list of all the prices a product had across all stores
     @Override
     public List<ProductPriceHistoryResponse> getPriceHistory(String productId) {
         return dataService.getProductsByStore().entrySet().stream()
@@ -77,7 +80,7 @@ public class ProductServiceImpl implements ProductService {
                                 .pricePerUnit(product.getPrice()/product.getPackage_quantity())
                                 .build()
                         )
-                        .sorted((a,b)->a.getDate().compareTo(b.getDate()))
+                        .sorted(Comparator.comparing(ProductPriceHistoryResponse::getDate))
                 ).toList();
     }
 

@@ -16,11 +16,13 @@ public class BasketServiceImpl implements BasketService {
 
     private final DataService dataService;
 
+    // finds the store with the basket has the lowest price or shows missing products & "No store"
     @Override
     public BasketResponse findBestBasket(BasketRequest basketRequest) {
         Map<String, List<Product>> productsByStore = dataService.getProductsByStore();
         BasketResponse bestBasket = null;
 
+        // check product list for each store
         for (Map.Entry<String, List<Product>> entry : productsByStore.entrySet()) {
             String storeName = entry.getKey();
             List<Product> products = entry.getValue();
@@ -28,6 +30,7 @@ public class BasketServiceImpl implements BasketService {
             double totalPrice = 0;
             List<String> missingProducts = new ArrayList<>();
 
+            // calculate price or find the missing products
             for(String productId: basketRequest.getProductIds()){
                 Optional<Product> found = products.stream()
                         .filter(product -> product.getProduct_id().equals(productId))
@@ -39,7 +42,9 @@ public class BasketServiceImpl implements BasketService {
                 }
             }
 
-            if (missingProducts.isEmpty()) {
+            // check for missing products
+            if (missingProducts.isEmpty() ) {
+                // check is the store is the cheapest
                 if (bestBasket==null || totalPrice< bestBasket.getBasketPrice()) {
                     bestBasket = BasketResponse.builder()
                             .store(storeName)
@@ -49,6 +54,8 @@ public class BasketServiceImpl implements BasketService {
                 }
             }
         }
+
+        // no store has all the products, return default response
         if (bestBasket==null) {
             bestBasket = BasketResponse.builder()
                     .store("No store")

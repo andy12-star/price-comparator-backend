@@ -9,7 +9,7 @@ public class PriceComparatorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PriceComparatorApplication.class, args);
 	}
-//
+
 //	// to test if the csv loader works
 //	@Bean
 //	public CommandLineRunner CsvLoader_test() {

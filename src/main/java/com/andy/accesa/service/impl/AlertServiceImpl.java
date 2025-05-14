@@ -23,15 +23,18 @@ public class AlertServiceImpl implements AlertService {
         alerts.put(productId, targetPrice);
     }
 
+
     @Override
     public List<Product> checkAlerts() {
        List<Product> products = new ArrayList<>();
        Map<String,List<Product>> productsByStore = dataService.getProductsByStore();
 
+       // goes through all the alerts
        for(Map.Entry<String,Double> entry : alerts.entrySet()) {
            String productId = entry.getKey();
            Double targetPrice = entry.getValue();
 
+           // finds the product with the id and the price below = target
            productsByStore.values().stream()
                    .flatMap(List::stream)
                    .filter(product -> product.getProduct_id().equals(productId))
