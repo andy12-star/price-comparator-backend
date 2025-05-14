@@ -42,16 +42,16 @@ mvn spring-boot:run
 | Method | Endpoint | Description |
 |-------|----------|-------------|
 | GET   | /products  | Returns all products |
-|GET| /products/store/{store}|Returns products by store|
-|GET|/products/find?name={name}|Search products by name|
-|GET|/products/recommendations?category={category}&brand={brand}| Suggests best products by unit price|
-|GET|/products/{productId}/history|Shows price history|
+|GET| /products/store/{store}|Returns products by store; store - path parameter of type String|
+|GET|/products/find/{name}|Search products by name; name - path parameter of type String|
+|GET|/products/recommendations/{category}&brand={brand}| Suggests best products by unit price; category - path parameter of type String; brand - query parameter of type String|
+|GET|/products/{productId}/history|Shows price history; productId - path parameter of type String|
 
 ## Endpoints for Discount
 | Method | Endpoint | Description |
 |-------|----------|-------------|
 | GET   | /discounts  | Returns all discounts |
-|GET| /discounts/store/{store}|Returns discounts by store|
+|GET| /discounts/store/{store}|Returns discounts by store; store - path parameter of type String|
 |GET|/discounts/best|Returns best discounts|
 |GET|/discounts/new| Returns newly discounts(last 3 days)|
 
