@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -29,8 +30,15 @@ public class DiscountServiceImpl implements DiscountService {
 
     @Override
     public List<Discount> getDiscountsByStore(String store) {
-        return dataService.getDiscountsByStore()
+        List<Discount> discounts= dataService.getDiscountsByStore()
                 .getOrDefault(store, new ArrayList<>());
+
+        // if there is no store with that name
+        if (discounts.isEmpty()) {
+            throw new NoSuchElementException("No discount found for store: " + store);
+        }
+
+        return discounts;
     }
 
     @Override

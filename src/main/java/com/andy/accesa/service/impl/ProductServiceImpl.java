@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -30,21 +31,35 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getProductsByStore(String store) {
-        return dataService.getProductsByStore().getOrDefault(store, new ArrayList<>());
+        List<Product> products =  dataService.getProductsByStore().getOrDefault(store, new ArrayList<>());
+
+        // if there is no store with that name
+        if(products.isEmpty()) {
+            throw new NoSuchElementException("There is no product with store: " + store);
+        }
+
+        return products;
     }
 
     @Override
     public List<Product> getProductsByName(String name) {
-        return findAll().stream()
+        List<Product> producst = findAll().stream()
                 .filter(p->p.getProduct_name().toLowerCase().contains(name.toLowerCase()))
                 .collect(Collectors.toList());
+
+        // if there is no product found
+        if (producst.isEmpty()) {
+            throw new NoSuchElementException("No product found with name: " + name);
+        }
+
+        return producst;
     }
 
     // returns product recommendations by best price/unit
     // filtered by category and by brand(optional)
     @Override
     public List<ProductRecommendation> getRecommendations(String category, String brand) {
-        return dataService.getProductsByStore()
+        List<ProductRecommendation> recommendations = dataService.getProductsByStore()
                 .entrySet()
                 .stream()
                 .flatMap(entry->entry.getValue().stream()
@@ -63,6 +78,14 @@ public class ProductServiceImpl implements ProductService {
                 )
                 .sorted(Comparator.comparingDouble(ProductRecommendation::getPricePerUnit))
                 .toList();
+
+        // if there is no product with that category or brand
+        if (recommendations.isEmpty()) {
+            throw new NoSuchElementException(
+                    "No products found for category: "+ category +(brand!=null ? "and brand: " + brand : "")
+            );
+        }
+        return recommendations;
     }
 
     // returns a list of all the prices a product had across all stores
